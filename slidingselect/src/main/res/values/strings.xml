@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SlidingCheck</string>
+    <item name="sliding_pos" type="id" />
+    <item name="sliding_data" type="id" />
+</resources>
