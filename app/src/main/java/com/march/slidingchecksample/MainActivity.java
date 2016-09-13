@@ -110,4 +110,5 @@ public class MainActivity extends MyBaseActivity {
     protected boolean isInitTitle() {
         return false;
     }
+
 }

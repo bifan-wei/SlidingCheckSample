@@ -124,8 +124,7 @@ public class SlidingSelectLayout extends FrameLayout {
         return isBeingSlide;
     }
 
-
-    public void ensureLayoutManager() {
+    private void ensureLayoutManager() {
         if (mTargetRv == null || itemSpanCount != INVALID_PARAM)
             return;
         RecyclerView.LayoutManager lm = mTargetRv.getLayoutManager();
@@ -141,26 +140,29 @@ public class SlidingSelectLayout extends FrameLayout {
         xTouchSlop = yTouchSlop = size * TOUCH_SLOP_RATE;
     }
 
+
     private void publishSlidingCheck(MotionEvent event) {
         float x = generateX(event.getX());
         float y = generateY(event.getY());
         View childViewUnder = mTargetRv.findChildViewUnder(x, y);
-        if (onSlidingSelectListener != null && childViewUnder != null) {
-            int pos = getPos(childViewUnder);
-            Object data = getData(childViewUnder);
-            if (pos != INVALID_PARAM && preViewPos != pos && data != null) {
-                try {
-                    onSlidingSelectListener.onSlidingSelect(pos, childViewUnder, data);
-                    preViewPos = pos;
-                } catch (ClassCastException e) {
-                    Log.e("SlidingSelect", "ClassCastException:填写的范型有误，无法转换");
-                }
+        // fast stop
+        if (onSlidingSelectListener == null || childViewUnder == null)
+            return;
+        int pos = getPos(childViewUnder);
+        Object data = getData(childViewUnder);
+        // fast stop
+        if (pos == INVALID_PARAM || preViewPos == pos || data == null)
+            return;
 
-            }
+        try {
+            onSlidingSelectListener.onSlidingSelect(pos, childViewUnder, data);
+            preViewPos = pos;
+        } catch (ClassCastException e) {
+            Log.e("SlidingSelect", "ClassCastException:填写的范型有误，无法转换");
         }
     }
 
-    public void setTagKey(int tagPosKey, int tagDataKey) {
+    private void setTagKey(int tagPosKey, int tagDataKey) {
         this.tagPosKey = tagPosKey;
         this.tagDataKey = tagDataKey;
     }
@@ -170,7 +172,7 @@ public class SlidingSelectLayout extends FrameLayout {
         parentView.setTag(tagDataKey, data);
     }
 
-    public int getPos(View parentView) {
+    private int getPos(View parentView) {
         int pos = INVALID_PARAM;
         Object tag = parentView.getTag(tagPosKey);
         if (tag != null)
@@ -178,7 +180,7 @@ public class SlidingSelectLayout extends FrameLayout {
         return pos;
     }
 
-    public Object getData(View parentView) {
+    private Object getData(View parentView) {
         return parentView.getTag(tagDataKey);
     }
 

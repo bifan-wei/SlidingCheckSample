@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SlidingCheckSample.iml" filepath="$PROJECT_DIR$/SlidingCheckSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/slidingselect/slidingcheck.iml" filepath="$PROJECT_DIR$/slidingselect/slidingcheck.iml" />
+      <module fileurl="file://$PROJECT_DIR$/slidingselect/slidingselect.iml" filepath="$PROJECT_DIR$/slidingselect/slidingselect.iml" />
     </modules>
   </component>
 </project>
