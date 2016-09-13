@@ -32,7 +32,7 @@ public class SlidingSelectLayout extends FrameLayout {
         setTagKey(R.id.sliding_pos, R.id.sliding_data);
     }
 
-    private static final float TOUCH_SLOP_RATE = 0.25f;
+    private static final float TOUCH_SLOP_RATE = 0.15f;
     // 初始化值
     private static final int INVALID_PARAM = -1;
     // 滑动选中监听
